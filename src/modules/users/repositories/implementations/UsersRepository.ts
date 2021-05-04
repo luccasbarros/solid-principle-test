@@ -54,11 +54,12 @@ class UsersRepository implements IUsersRepository {
   }
 
   turnAdmin(receivedUser: User): User {
-    const objectCopy = { ...receivedUser };
-    objectCopy.admin = true;
-    objectCopy.updated_at = new Date();
+    Object.assign(receivedUser, {
+      admin: true,
+      updated_at: new Date(),
+    });
 
-    return objectCopy;
+    return receivedUser;
   }
 
   list(): User[] {
